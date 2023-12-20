@@ -33,7 +33,7 @@ public class ArrayListCRUD {
 				System.out.println("Enter Employee Id : ");
 				int id = sc.nextInt();
 
-				if (id == 0) {
+				if (id == 0) {	
 
 					try {
 						throw new InvalidDataEcception("Data is not valid");
@@ -41,7 +41,7 @@ public class ArrayListCRUD {
 						System.out.println(e.getMessage());
 						e.printStackTrace();
 					}
-				}
+				}   
 
 				for (Employee employee2 : arrayList) {
 					if (employee2.getEmpId() == id) {
