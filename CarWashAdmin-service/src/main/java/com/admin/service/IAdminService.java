@@ -15,4 +15,8 @@ public interface IAdminService {
 	
 	public String deleteWashPack(Integer id);
 	
+	public List<WashPacks> getWashPackById(Integer id);
+	
+	public List<WashPacks> getWashPackByName(String packname);
+	
 }

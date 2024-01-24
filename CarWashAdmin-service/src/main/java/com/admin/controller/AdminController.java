@@ -44,16 +44,40 @@ public class AdminController {
 		Object pack2=adminService.updateWashPack(id,packs);
 		return new ResponseEntity<Object>(pack2,HttpStatus.OK);
 	}
-	
+	             
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<String> deleteWashPack(@PathVariable Integer id) {
 		boolean delete=adminService.deleteWashPack(id) != null;
-		
+		  
 		if(delete) {
 			return new ResponseEntity<String>("Deleted",HttpStatus.OK);
 		}else {
 			return new ResponseEntity<String>("WashPack with "+id+" not found ",HttpStatus.OK);
 		}
+	}
+	
+	@GetMapping("/getById/{id}")
+    public ResponseEntity<List<WashPacks>> getById(@PathVariable int id) {
+        List<WashPacks> packs = adminService.getWashPackById(id);
+   
+        if (packs != null && !packs.isEmpty()) {      
+            return new ResponseEntity<>(packs, HttpStatus.OK);
+        } else {
+            // You may want to return a different HttpStatus based on your requirements         
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }               
+	}
+	
+	@GetMapping("/getByName/{packname}")
+	public ResponseEntity<List<WashPacks>> getByName(@PathVariable String packname){
+		List<WashPacks> packs = adminService.getWashPackByName(packname);
+
+        if (packs != null && !packs.isEmpty()) {
+            return new ResponseEntity<>(packs, HttpStatus.OK);
+        } else {
+            // You may want to return a different HttpStatus based on your requirements
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
 	}
 	
 }
